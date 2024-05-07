@@ -1,6 +1,5 @@
 package principales;
 
-import java.time.LocalDate;
 import java.util.Scanner;
 
 import modelo.dao.ClientesDaoImplMy8Jpa;
