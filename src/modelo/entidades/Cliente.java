@@ -3,6 +3,7 @@ package modelo.entidades;
 import java.io.Serializable;
 import javax.persistence.*;
 import java.math.BigDecimal;
+import java.util.Objects;
 
 
 /**
@@ -31,6 +32,17 @@ public class Cliente implements Serializable {
 	private int numeroEmpleados;
 
 	public Cliente() {
+	}
+	
+	public Cliente(String cif, String apellidos, String domicilio, BigDecimal facturacionAnual, String nombre,
+			int numeroEmpleados) {
+		super();
+		this.cif = cif;
+		this.apellidos = apellidos;
+		this.domicilio = domicilio;
+		this.facturacionAnual = facturacionAnual;
+		this.nombre = nombre;
+		this.numeroEmpleados = numeroEmpleados;
 	}
 
 	public String getCif() {
@@ -80,5 +92,30 @@ public class Cliente implements Serializable {
 	public void setNumeroEmpleados(int numeroEmpleados) {
 		this.numeroEmpleados = numeroEmpleados;
 	}
+
+	@Override
+	public String toString() {
+		return "Cliente [cif=" + cif + ", apellidos=" + apellidos + ", domicilio=" + domicilio + ", facturacionAnual="
+				+ facturacionAnual + ", nombre=" + nombre + ", numeroEmpleados=" + numeroEmpleados + "]";
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(cif);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (!(obj instanceof Cliente))
+			return false;
+		Cliente other = (Cliente) obj;
+		return Objects.equals(cif, other.cif);
+	}
+
+	
+	
+	
 
 }
