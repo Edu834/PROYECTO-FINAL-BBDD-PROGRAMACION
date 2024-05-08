@@ -5,6 +5,7 @@ import javax.persistence.*;
 import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 
 
 /**
@@ -58,6 +59,25 @@ public class Empleado implements Serializable {
 
 	public Empleado() {
 	}
+
+	public Empleado(int idEmpl, String apellidos, String email, Date fechaIngreso, Date fechaNacimiento, String genero,
+			String nombre, String password, BigDecimal salario, Departamento departamento, Perfil perfil,
+			List<Proyecto> proyectos) {
+		super();
+		this.idEmpl = idEmpl;
+		this.apellidos = apellidos;
+		this.email = email;
+		this.fechaIngreso = fechaIngreso;
+		this.fechaNacimiento = fechaNacimiento;
+		this.genero = genero;
+		this.nombre = nombre;
+		this.password = password;
+		this.salario = salario;
+		this.departamento = departamento;
+		this.perfil = perfil;
+		this.proyectos = proyectos;
+	}
+
 
 	public int getIdEmpl() {
 		return this.idEmpl;
@@ -168,5 +188,34 @@ public class Empleado implements Serializable {
 
 		return proyecto;
 	}
+	
+	public double salarioBruto() {
+		return salario.doubleValue();
+	}
+
+	@Override
+	public String toString() {
+		return "Empleado [idEmpl=" + idEmpl + ", apellidos=" + apellidos + ", email=" + email + ", fechaIngreso="
+				+ fechaIngreso + ", fechaNacimiento=" + fechaNacimiento + ", genero=" + genero + ", nombre=" + nombre
+				+ ", password=" + password + ", salario=" + salario + ", departamento=" + departamento + ", perfil="
+				+ perfil + ", proyectos=" + proyectos + "]";
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(idEmpl);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (!(obj instanceof Empleado))
+			return false;
+		Empleado other = (Empleado) obj;
+		return idEmpl == other.idEmpl;
+	}
+	
+	
 
 }
