@@ -15,12 +15,22 @@ import java.util.List;
 @Table(name="empleados")
 @NamedQuery(name="Empleado.findAll", query="SELECT e FROM Empleado e")
 public class Empleado implements Serializable {
+	@Override
+	public String toString() {
+		return "Empleado [idEmpl=" + idEmpl + ", apellidos=" + apellidos + ", email=" + email + ", fechaIngreso="
+				+ fechaIngreso + ", fechaNacimiento=" + fechaNacimiento + ", genero=" + genero + ", nombre=" + nombre
+				+ ", password=" + password + ", salario=" + salario + ", departamento=" + departamento + ", perfil="
+				+ perfil + ", proyectos=" + proyectos + "]";
+	}
+
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="id_empl")
 	private int idEmpl;
+
+	
 
 	private String apellidos;
 
@@ -55,7 +65,7 @@ public class Empleado implements Serializable {
 	//bi-directional many-to-one association to Proyecto
 	@OneToMany(mappedBy="empleado")
 	private List<Proyecto> proyectos;
-
+	
 	public Empleado() {
 	}
 
@@ -169,4 +179,37 @@ public class Empleado implements Serializable {
 		return proyecto;
 	}
 
+	
+	public double salarioBruto() {
+		return idEmpl;
+	};
+	public double salarioMensual() {
+		return idEmpl;
+	};
+	public double literalSexo() {
+		return idEmpl;
+	};
+	
+
+	
+
+	
+	public Empleado(int idEmpl, String apellidos, String email, Date fechaIngreso, Date fechaNacimiento, String genero,
+			String nombre, String password, BigDecimal salario, Departamento departamento, Perfil perfil,
+			List<Proyecto> proyectos, double salarioBruto, double salarioMensual, String literalSexo) {
+		super();
+		this.idEmpl = idEmpl;
+		this.apellidos = apellidos;
+		this.email = email;
+		this.fechaIngreso = fechaIngreso;
+		this.fechaNacimiento = fechaNacimiento;
+		this.genero = genero;
+		this.nombre = nombre;
+		this.password = password;
+		this.salario = salario;
+		this.departamento = departamento;
+		this.perfil = perfil;
+		this.proyectos = proyectos;
+	}
+	
 }

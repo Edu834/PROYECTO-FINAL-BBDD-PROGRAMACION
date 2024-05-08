@@ -2,13 +2,14 @@ package principales;
 
 import java.util.Scanner;
 
+import modelo.dao.ClientesDao;
 import modelo.dao.ClientesDaoImplMy8Jpa;
 import modelo.entidades.Cliente;
 
 
 
 public class GestionesClientes {
-	private static ClientesDaoImplMy8Jpa cdao;
+	private static ClientesDao cdao;
 	private static Scanner leer;
 	static {
 		cdao = new ClientesDaoImplMy8Jpa();
@@ -117,6 +118,7 @@ public class GestionesClientes {
 		System.out.print("- ");
 		String cif = leer.next();
 		cdao.eliminar(cif);
+		procLeerTodos();
 		
 		if(cdao.eliminar(cif) != false) {
 			
@@ -124,7 +126,7 @@ public class GestionesClientes {
 		}
 		else { 
 			
-			System.out.println("Cliente " + cdao.buscarUno(cif).getNombre() + " eliminado");
+			System.out.println("Cliente eliminado correctamente");
 		}
 		
 		

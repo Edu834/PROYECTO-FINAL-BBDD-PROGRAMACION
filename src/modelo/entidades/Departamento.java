@@ -1,6 +1,8 @@
 package modelo.entidades;
 
 import java.io.Serializable;
+import java.util.Objects;
+
 import javax.persistence.*;
 
 
@@ -12,6 +14,27 @@ import javax.persistence.*;
 @Table(name="departamentos")
 @NamedQuery(name="Departamento.findAll", query="SELECT d FROM Departamento d")
 public class Departamento implements Serializable {
+	@Override
+	public int hashCode() {
+		return Objects.hash(direccion, idDepar, nombre);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (!(obj instanceof Departamento))
+			return false;
+		Departamento other = (Departamento) obj;
+		return Objects.equals(direccion, other.direccion) && idDepar == other.idDepar
+				&& Objects.equals(nombre, other.nombre);
+	}
+
+	@Override
+	public String toString() {
+		return "Departamento [idDepar=" + idDepar + ", direccion=" + direccion + ", nombre=" + nombre + "]";
+	}
+
 	private static final long serialVersionUID = 1L;
 
 	@Id
@@ -23,6 +46,13 @@ public class Departamento implements Serializable {
 	private String nombre;
 
 	public Departamento() {
+	}
+
+	public Departamento(int idDepar, String direccion, String nombre) {
+		super();
+		this.idDepar = idDepar;
+		this.direccion = direccion;
+		this.nombre = nombre;
 	}
 
 	public int getIdDepar() {

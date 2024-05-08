@@ -2,14 +2,13 @@ package modelo.dao;
 
 import java.util.List;
 
-import modelo.entidades.Cliente;
+import modelo.entidades.Departamento;
 
 
-
-public class ClientesDaoImplMy8Jpa extends AbstractDaoImplMy8Jpa implements ClientesDao{
+public class DepartementoDaoImplMy8Jpa extends AbstractDaoImplMy8Jpa implements DepartamentoDao {
 
 	@Override
-	public boolean alta(Cliente obj) {
+	public boolean alta(Departamento obj) {
 		try {
 			tx.begin();
 			em.persist(obj);
@@ -19,15 +18,16 @@ public class ClientesDaoImplMy8Jpa extends AbstractDaoImplMy8Jpa implements Clie
 			return false;
 		}
 		return false;
+		
 	}
 
 	@Override
-	public boolean eliminar(String clave) {
+	public boolean eliminar(Integer clave) {
 		try {
-			Cliente cliente = buscarUno(clave);
-			if(cliente != null) {
+			Departamento dep = buscarUno(clave);
+			if(dep != null) {
 				tx.begin();
-					em.remove(cliente);
+					em.remove(dep);
 				tx.commit();
 			}else
 				return false;
@@ -41,9 +41,9 @@ public class ClientesDaoImplMy8Jpa extends AbstractDaoImplMy8Jpa implements Clie
 	}
 
 	@Override
-	public boolean modificar(Cliente obj) {
+	public boolean modificar(Departamento obj) {
 		try {
-			if(buscarUno(obj.getCif()) != null) {
+			if(buscarUno(obj.getIdDepar()) != null) {
 				tx.begin();
 					em.merge(obj);
 				tx.commit();
@@ -55,21 +55,19 @@ public class ClientesDaoImplMy8Jpa extends AbstractDaoImplMy8Jpa implements Clie
 			
 		}
 		return false;
-		
 	}
-	
 
 	@Override
-	public Cliente buscarUno(String clave) {
-		return em.find(Cliente.class, clave);
-
+	public Departamento buscarUno(Integer clave) {
+		return em.find(Departamento.class, clave);
+		
 	}
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<Cliente> buscarTodos() {
-		jpql = "select c from Cliente c";
+	public List<Departamento> buscarTodos() {
+		jpql = "SELECT d FROM Departamento d";
 		return em.createQuery(jpql).getResultList();
 	}
-	
+
 }

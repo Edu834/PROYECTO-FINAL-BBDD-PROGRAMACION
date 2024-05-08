@@ -2,14 +2,12 @@ package modelo.dao;
 
 import java.util.List;
 
-import modelo.entidades.Cliente;
+import modelo.entidades.Perfil;
 
-
-
-public class ClientesDaoImplMy8Jpa extends AbstractDaoImplMy8Jpa implements ClientesDao{
+public class PerfilesDaoImplMy8Jpa extends AbstractDaoImplMy8Jpa implements PerfilesDao {
 
 	@Override
-	public boolean alta(Cliente obj) {
+	public boolean alta(Perfil obj) {
 		try {
 			tx.begin();
 			em.persist(obj);
@@ -19,15 +17,16 @@ public class ClientesDaoImplMy8Jpa extends AbstractDaoImplMy8Jpa implements Clie
 			return false;
 		}
 		return false;
+		
 	}
 
 	@Override
-	public boolean eliminar(String clave) {
+	public boolean eliminar(Integer clave) {
 		try {
-			Cliente cliente = buscarUno(clave);
-			if(cliente != null) {
+			Perfil per = buscarUno(clave);
+			if(per != null) {
 				tx.begin();
-					em.remove(cliente);
+					em.remove(per);
 				tx.commit();
 			}else
 				return false;
@@ -41,9 +40,9 @@ public class ClientesDaoImplMy8Jpa extends AbstractDaoImplMy8Jpa implements Clie
 	}
 
 	@Override
-	public boolean modificar(Cliente obj) {
+	public boolean modificar(Perfil obj) {
 		try {
-			if(buscarUno(obj.getCif()) != null) {
+			if(buscarUno(obj.getIdPerfil()) != null) {
 				tx.begin();
 					em.merge(obj);
 				tx.commit();
@@ -55,21 +54,17 @@ public class ClientesDaoImplMy8Jpa extends AbstractDaoImplMy8Jpa implements Clie
 			
 		}
 		return false;
-		
-	}
-	
-
-	@Override
-	public Cliente buscarUno(String clave) {
-		return em.find(Cliente.class, clave);
-
 	}
 
-	@SuppressWarnings("unchecked")
 	@Override
-	public List<Cliente> buscarTodos() {
-		jpql = "select c from Cliente c";
+	public Perfil buscarUno(Integer clave) {
+		return em.find(Perfil.class, clave);
+	}
+
+	@Override
+	public List<Perfil> buscarTodos() {
+		jpql = "SELECT p FROM Perfil p";
 		return em.createQuery(jpql).getResultList();
 	}
-	
+
 }
