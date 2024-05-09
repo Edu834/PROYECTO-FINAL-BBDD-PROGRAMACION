@@ -32,11 +32,13 @@ public class GestionesClientes {
 					leerCliente();
 					break;
 				case 3: 
-					procLeerTodos();
-					break;
-				case 4: 
 					eliminarCliente();
 					break;
+				case 4: 
+					
+					procLeerTodos();
+					break;
+				
 				}
 				System.out.print("-> ");
 				opcion = leer.nextInt();
@@ -52,15 +54,15 @@ public class GestionesClientes {
 		System.out.println("------------------------");
 		System.out.println("1. - Alta cliente");
 		System.out.println("2. - Buscar un cliente");
-		System.out.println("3. - Mostrar todos");
-		System.out.println("4. - Eliminar un cliente");
+		System.out.println("3. - Eliminar un cliente");
+		System.out.println("4. - Mostrar todos");
 		System.out.println("5. - Salir");
 		System.out.println("------------------------");
 		System.out.print("-> ");
 		int opcion = leer.nextInt();
 		
 		while (opcion < 1 || opcion > 5) {
-			System.out.println("solo del 1 al 5");
+			System.out.println("solo del 1 al 6");
 			System.out.print("-> ");
 			opcion= leer.nextInt();
 		}
@@ -81,6 +83,7 @@ public class GestionesClientes {
 		
 		}
 	public static void procAltaCliente() {
+		
 		Cliente cliente = new Cliente();
 		System.out.println("CIF del cliente");
 		System.out.print("- ");

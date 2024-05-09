@@ -3,6 +3,7 @@ package principales;
 
 import modelo.dao.EmpleadoDao;
 import modelo.dao.EmpleadosDaoImplMy8Jpa2;
+import modelo.entidades.Empleado;
 
 
 
@@ -16,7 +17,8 @@ public class testEmpleado {
 		
 		
 		
-		System.out.println(edao.buscarTodos());
+		//System.out.println(edao.buscarTodos());
+		System.out.println(edao.empleadoByDepartamento(10));
 	}
 
 }

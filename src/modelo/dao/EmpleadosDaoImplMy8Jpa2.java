@@ -1,5 +1,6 @@
 package modelo.dao;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -71,6 +72,41 @@ public class EmpleadosDaoImplMy8Jpa2 extends AbstractDaoImplMy8Jpa implements Em
 		jpql = "SELECT e FROM Empleado e";
 		return em.createQuery(jpql).getResultList();
 	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Empleado> empleadoByDepartamento(int idDepar) {
+		jpql = "SELECT e FROM Empleado e WHERE id_empl like ?1";
+		query.setParameter(1, idDepar);
+		return em.createQuery(jpql).getResultList();
+	}
+
+	@Override
+	public List<Empleado> empleadoBySexo(char sexo) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Empleado> empleadoByApellido(String subcadena) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public double salarioTotal() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+
+	@Override
+	public double salarioTotal(int idDepar) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	
 
 	
 

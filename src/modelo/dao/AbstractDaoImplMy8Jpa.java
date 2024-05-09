@@ -20,4 +20,6 @@ public abstract class AbstractDaoImplMy8Jpa {
 		tx = em.getTransaction();
 		}
 
+	
+
 }

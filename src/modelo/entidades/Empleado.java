@@ -181,13 +181,34 @@ public class Empleado implements Serializable {
 
 	
 	public double salarioBruto() {
-		return idEmpl;
+		return salario.doubleValue();
 	};
-	public double salarioMensual() {
-		return idEmpl;
+	public double salarioMensual(Integer meses) {
+		return salario.doubleValue()/meses;
 	};
-	public double literalSexo() {
-		return idEmpl;
+	public String literalSexo() {
+		String literalSexo = "";
+		switch (genero) {
+		case "H": {
+			literalSexo = "Hombre";
+			break;
+		}
+		case "M": {
+			literalSexo = "Mujer";
+			break;
+		}
+		
+		}
+		return literalSexo;
+	};
+	
+	public String obtenerEmail() {
+		String letraNombre = nombre.substring(0, 1).toLowerCase();
+		return letraNombre + apellidos.toLowerCase() + "@email.com";
+	};
+	
+	public String nombreCompleto() {
+		return nombre + " " +apellidos;
 	};
 	
 
@@ -196,7 +217,7 @@ public class Empleado implements Serializable {
 	
 	public Empleado(int idEmpl, String apellidos, String email, Date fechaIngreso, Date fechaNacimiento, String genero,
 			String nombre, String password, BigDecimal salario, Departamento departamento, Perfil perfil,
-			List<Proyecto> proyectos, double salarioBruto, double salarioMensual, String literalSexo) {
+			List<Proyecto> proyectos) {
 		super();
 		this.idEmpl = idEmpl;
 		this.apellidos = apellidos;

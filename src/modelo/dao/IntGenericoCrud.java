@@ -8,4 +8,5 @@ public interface IntGenericoCrud<K,T> {
 	boolean modificar(T obj);
 	T buscarUno(K clave);
 	List<T> buscarTodos();
+	
 }
