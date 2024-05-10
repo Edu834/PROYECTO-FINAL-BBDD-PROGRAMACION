@@ -76,34 +76,55 @@ public class EmpleadosDaoImplMy8Jpa2 extends AbstractDaoImplMy8Jpa implements Em
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Empleado> empleadoByDepartamento(int idDepar) {
-		jpql = "SELECT e FROM Empleado e WHERE id_empl like ?1";
+		jpql = "SELECT e FROM Empleado e WHERE e.departamento.idDepar like ?1";
+		query= em.createQuery(jpql);
 		query.setParameter(1, idDepar);
-		return em.createQuery(jpql).getResultList();
+		return query.getResultList();
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
-	public List<Empleado> empleadoBySexo(char sexo) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Empleado> empleadoBySexo(String sexo) {
+		jpql = "SELECT e FROM Empleado e WHERE e.genero like ?1";
+		query= em.createQuery(jpql);
+		query.setParameter(1, sexo);
+		return query.getResultList();
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<Empleado> empleadoByApellido(String subcadena) {
-		// TODO Auto-generated method stub
-		return null;
+		jpql = "SELECT e FROM Empleado e WHERE e.apellidos like ?1";
+		query= em.createQuery(jpql);
+		query.setParameter(1, subcadena);
+		return query.getResultList();
 	}
 
 	@Override
 	public double salarioTotal() {
-		// TODO Auto-generated method stub
-		return 0;
+		List<Empleado> aux = new ArrayList<Empleado>();
+		double salarioTotal = 0.0;
+		aux = buscarTodos();
+		for (Empleado empleado : aux) {
+			
+			salarioTotal += empleado.salarioBruto();
+			
+		}
+		return salarioTotal;
 	}
 
 
 	@Override
 	public double salarioTotal(int idDepar) {
-		// TODO Auto-generated method stub
-		return 0;
+		List<Empleado> aux = new ArrayList<Empleado>();
+		double salarioTotal = 0.0;
+		aux = empleadoByDepartamento(idDepar);
+		for (Empleado empleado : aux) {
+			
+			salarioTotal += empleado.salarioBruto();
+			
+		}
+		return salarioTotal;
 	}
 
 	
