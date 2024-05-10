@@ -192,6 +192,36 @@ public class Empleado implements Serializable {
 	public double salarioBruto() {
 		return salario.doubleValue();
 	}
+	
+	public double salarioMensual(int meses) {
+		return salarioBruto()/meses;
+	}
+	
+	public String literalSexo() {
+		String literal="";
+		switch (genero) {
+		case "M": 
+			literal = "Mujer";
+			break;
+		
+		case "H": 
+			literal = "Hombre";
+			break;
+		
+		default:
+			throw new IllegalArgumentException("Unexpected value: " + genero);
+		}
+		return literal;
+	}
+	
+	public String obtenerEmail() {
+		apellidos=apellidos + " ";
+		return nombre.substring(0, 1).toLowerCase()+ apellidos.toLowerCase().substring(0, apellidos.indexOf(" ")) + "@gmail.com";
+	}
+	
+	public String nombreCompleto() {
+		return  nombre + " " + apellidos;
+	}
 
 	@Override
 	public String toString() {
