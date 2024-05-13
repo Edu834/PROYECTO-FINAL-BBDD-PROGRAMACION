@@ -69,7 +69,7 @@ public class GestionesClientes {
 		return opcion;
 	}
 	public static void leerCliente() {
-		System.out.println("Escriba el CIF del cliente");
+		System.out.println("Escriba el ID del empledo");
 		System.out.print("- ");
 		String cif = leer.next();
 		Cliente cliente = cdao.buscarUno(cif);

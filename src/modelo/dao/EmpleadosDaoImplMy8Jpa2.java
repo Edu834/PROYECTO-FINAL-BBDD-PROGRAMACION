@@ -102,10 +102,10 @@ public class EmpleadosDaoImplMy8Jpa2 extends AbstractDaoImplMy8Jpa implements Em
 
 	@Override
 	public double salarioTotal() {
-		List<Empleado> aux = new ArrayList<Empleado>();
+		
 		double salarioTotal = 0.0;
-		aux = buscarTodos();
-		for (Empleado empleado : aux) {
+		
+		for (Empleado empleado : buscarTodos()) {
 			
 			salarioTotal += empleado.salarioBruto();
 			
@@ -116,10 +116,10 @@ public class EmpleadosDaoImplMy8Jpa2 extends AbstractDaoImplMy8Jpa implements Em
 
 	@Override
 	public double salarioTotal(int idDepar) {
-		List<Empleado> aux = new ArrayList<Empleado>();
+		
 		double salarioTotal = 0.0;
-		aux = empleadoByDepartamento(idDepar);
-		for (Empleado empleado : aux) {
+		
+		for (Empleado empleado : empleadoByDepartamento(idDepar)) {
 			
 			salarioTotal += empleado.salarioBruto();
 			

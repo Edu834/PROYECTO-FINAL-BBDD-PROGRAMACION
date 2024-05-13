@@ -61,6 +61,7 @@ public class PerfilesDaoImplMy8Jpa extends AbstractDaoImplMy8Jpa implements Perf
 		return em.find(Perfil.class, clave);
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<Perfil> buscarTodos() {
 		jpql = "SELECT p FROM Perfil p";
