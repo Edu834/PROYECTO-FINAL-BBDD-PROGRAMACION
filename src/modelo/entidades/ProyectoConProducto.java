@@ -76,5 +76,6 @@ public class ProyectoConProducto implements Serializable {
 	public void setProyecto(Proyecto proyecto) {
 		this.proyecto = proyecto;
 	}
-
+	
+	
 }

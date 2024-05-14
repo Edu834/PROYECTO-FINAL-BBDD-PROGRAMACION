@@ -3,6 +3,8 @@ package modelo.entidades;
 import java.io.Serializable;
 import javax.persistence.*;
 import java.math.BigDecimal;
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 import java.util.Date;
 
 
@@ -145,5 +147,20 @@ public class Proyecto implements Serializable {
 	public void setEmpleado(Empleado empleado) {
 		this.empleado = empleado;
 	}
+	
+	public double margenPrevisto() {
+		return  ventaPrevisto.doubleValue() - costesPrevisto.doubleValue() ;
+	}
+	public double margenReal() {
+		return  ventaPrevisto.doubleValue() - costeReal.doubleValue();
+	}
+	public double diferenciaGastos() {
+		return  costeReal.doubleValue()- costesPrevisto.doubleValue() ;
+	}
+	public int diferenciaFinPrevistoReal() {
+	//	return (int)ChronoUnit.DAYS.between(fechaFinPrevisto, fechaFinReal);
+		return (int)(fechaFinPrevisto.getTime()/(1000*60*60*24)-fechaFinReal.getTime()/(1000*60*60*24));
+	}
+	
 
 }

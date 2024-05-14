@@ -1,6 +1,6 @@
 package principales;
 
-import java.util.Scanner;
+
 
 import modelo.dao.EmpleadoDao;
 import modelo.dao.EmpleadosDaoImplMy8Jpa2;
