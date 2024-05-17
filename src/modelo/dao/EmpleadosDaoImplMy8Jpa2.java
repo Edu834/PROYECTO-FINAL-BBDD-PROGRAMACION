@@ -76,7 +76,7 @@ public class EmpleadosDaoImplMy8Jpa2 extends AbstractDaoImplMy8Jpa implements Em
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Empleado> empleadoByDepartamento(int idDepar) {
-		jpql = "SELECT e FROM Empleado e WHERE e.departamento.idDepar like ?1";
+		jpql = "SELECT e FROM Empleado e WHERE e.departamento.idDepar = ?1";
 		query= em.createQuery(jpql);
 		query.setParameter(1, idDepar);
 		return query.getResultList();
@@ -85,7 +85,7 @@ public class EmpleadosDaoImplMy8Jpa2 extends AbstractDaoImplMy8Jpa implements Em
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Empleado> empleadoBySexo(String sexo) {
-		jpql = "SELECT e FROM Empleado e WHERE e.genero like ?1";
+		jpql = "SELECT e FROM Empleado e WHERE e.genero = ?1";
 		query= em.createQuery(jpql);
 		query.setParameter(1, sexo);
 		return query.getResultList();
@@ -94,7 +94,7 @@ public class EmpleadosDaoImplMy8Jpa2 extends AbstractDaoImplMy8Jpa implements Em
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Empleado> empleadoByApellido(String subcadena) {
-		jpql = "SELECT e FROM Empleado e WHERE e.apellidos like ?1";
+		jpql = "SELECT e FROM Empleado e WHERE e.apellidos = ?1";
 		query= em.createQuery(jpql);
 		query.setParameter(1, subcadena);
 		return query.getResultList();

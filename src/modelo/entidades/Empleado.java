@@ -20,7 +20,7 @@ public class Empleado implements Serializable {
 		return "Empleado [idEmpl=" + idEmpl + ", apellidos=" + apellidos + ", email=" + email + ", fechaIngreso="
 				+ fechaIngreso + ", fechaNacimiento=" + fechaNacimiento + ", genero=" + genero + ", nombre=" + nombre
 				+ ", password=" + password + ", salario=" + salario + ", departamento=" + departamento + ", perfil="
-				+ perfil + ", proyectos=" + proyectos + "]";
+				+ perfil + "]";
 	}
 
 	private static final long serialVersionUID = 1L;

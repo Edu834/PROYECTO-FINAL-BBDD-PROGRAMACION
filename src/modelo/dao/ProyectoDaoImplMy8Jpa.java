@@ -16,11 +16,12 @@ public class ProyectoDaoImplMy8Jpa extends AbstractDaoImplMy8Jpa implements Proy
 			tx.begin();
 			em.persist(obj);
 			tx.commit();
+			return true;
 		} catch (Exception e) {
 			e.printStackTrace();
 			return false;
 		}
-		return false;
+		
 	}
 
 	@Override
@@ -31,6 +32,7 @@ public class ProyectoDaoImplMy8Jpa extends AbstractDaoImplMy8Jpa implements Proy
 				tx.begin();
 					em.remove(proy);
 				tx.commit();
+				return true;
 			}else
 				return false;
 		} catch (Exception e) {
@@ -39,7 +41,7 @@ public class ProyectoDaoImplMy8Jpa extends AbstractDaoImplMy8Jpa implements Proy
 			
 		}
 		
-		return false;
+		
 	}
 
 	@Override
@@ -49,6 +51,7 @@ public class ProyectoDaoImplMy8Jpa extends AbstractDaoImplMy8Jpa implements Proy
 				tx.begin();
 					em.merge(obj);
 				tx.commit();
+				return true;
 			}else
 				return false;
 		} catch (Exception e) {
@@ -56,7 +59,7 @@ public class ProyectoDaoImplMy8Jpa extends AbstractDaoImplMy8Jpa implements Proy
 			return false;
 			
 		}
-		return false;
+		
 	}
 
 	@Override
@@ -74,7 +77,7 @@ public class ProyectoDaoImplMy8Jpa extends AbstractDaoImplMy8Jpa implements Proy
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Proyecto> proyectosByEstado(String estado) {
-		jpql = "SELECT p FROM Proyecto p WHERE p.estado like ?1";
+		jpql = "SELECT p FROM Proyecto p WHERE p.estado = ?1";
 		query = em.createQuery(jpql);
 		query.setParameter(1, estado);
 		return query.getResultList();
@@ -83,7 +86,7 @@ public class ProyectoDaoImplMy8Jpa extends AbstractDaoImplMy8Jpa implements Proy
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Proyecto> proyectosByCliente(String cif) {
-		jpql = "SELECT p FROM Proyecto p WHERE p.cif like ?1";
+		jpql = "SELECT p FROM Proyecto p WHERE p.cliente.cif = ?1";
 		query = em.createQuery(jpql);
 		query.setParameter(1, cif);
 		return query.getResultList();
@@ -92,7 +95,7 @@ public class ProyectoDaoImplMy8Jpa extends AbstractDaoImplMy8Jpa implements Proy
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Proyecto> proyectosByJefeProyectoAndByEstado(int jefeProyecto, String estado) {
-		jpql = "SELECT p FROM Proyecto p WHERE p.jefe_proyecto like ?1 and p.estado like ?2";
+		jpql = "SELECT p FROM Proyecto p WHERE p.empleado.idEmpl = ?1 and p.estado = ?2";
 		query = em.createQuery(jpql);
 		query.setParameter(1, jefeProyecto);
 		query.setParameter(2, estado);
@@ -121,16 +124,13 @@ public class ProyectoDaoImplMy8Jpa extends AbstractDaoImplMy8Jpa implements Proy
 
 	@Override
 	public int diasATerminoProyectoActivo(String codigoProyecto) {
-		int diasRestantes = 0;
+		long diasATermino = 0;
 		Date diasFin = buscarUno(codigoProyecto).getFechaFinPrevisto();
 		Date hoy = new Date();
 		if(buscarUno(codigoProyecto).getEstado().equals("ACTIVO")) {
-			
-			
-			
-			diasRestantes = (int)diasFin.getTime()/(1000*60*60*24) - (int)hoy.getTime()/(1000*60*60*24);
+				diasATermino = diasFin.getTime()/(1000*60*60*24) - hoy.getTime()/(1000*60*60*24);
 		}
-		return diasRestantes;
+		return (int)diasATermino;
 	}
 
 }

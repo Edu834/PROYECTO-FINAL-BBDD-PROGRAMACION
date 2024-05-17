@@ -62,7 +62,7 @@ public class GestionesClientes {
 		int opcion = leer.nextInt();
 		
 		while (opcion < 1 || opcion > 5) {
-			System.out.println("solo del 1 al 6");
+			System.out.println("solo del 1 al 5");
 			System.out.print("-> ");
 			opcion= leer.nextInt();
 		}

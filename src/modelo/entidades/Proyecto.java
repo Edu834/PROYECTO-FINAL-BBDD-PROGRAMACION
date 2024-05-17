@@ -3,8 +3,6 @@ package modelo.entidades;
 import java.io.Serializable;
 import javax.persistence.*;
 import java.math.BigDecimal;
-import java.time.LocalDate;
-import java.time.temporal.ChronoUnit;
 import java.util.Date;
 
 
@@ -18,6 +16,9 @@ import java.util.Date;
 public class Proyecto implements Serializable {
 	private static final long serialVersionUID = 1L;
 
+	
+	
+	
 	@Id
 	@Column(name="id_proyecto")
 	private String idProyecto;
@@ -161,6 +162,39 @@ public class Proyecto implements Serializable {
 	//	return (int)ChronoUnit.DAYS.between(fechaFinPrevisto, fechaFinReal);
 		return (int)(fechaFinPrevisto.getTime()/(1000*60*60*24)-fechaFinReal.getTime()/(1000*60*60*24));
 	}
+
+	@Override
+	public String toString() {
+		return "Proyecto [idProyecto=" + idProyecto + ", costeReal=" + costeReal + ", costesPrevisto=" + costesPrevisto
+				+ ", descripcion=" + descripcion + ", estado=" + estado + ", fechaFinPrevisto=" + fechaFinPrevisto
+				+ ", fechaFinReal=" + fechaFinReal + ", fechaInicio=" + fechaInicio + ", ventaPrevisto=" + ventaPrevisto
+				+ ", cliente=" + cliente + ", empleado=" + empleado + "]";
+	}
+
+	public Proyecto(String idProyecto, BigDecimal costeReal, BigDecimal costesPrevisto, String descripcion,
+			String estado, Date fechaFinPrevisto, Date fechaFinReal, Date fechaInicio, BigDecimal ventaPrevisto,
+			Cliente cliente, Empleado empleado) {
+		super();
+		this.idProyecto = idProyecto;
+		this.costeReal = costeReal;
+		this.costesPrevisto = costesPrevisto;
+		this.descripcion = descripcion;
+		this.estado = estado;
+		this.fechaFinPrevisto = fechaFinPrevisto;
+		this.fechaFinReal = fechaFinReal;
+		this.fechaInicio = fechaInicio;
+		this.ventaPrevisto = ventaPrevisto;
+		this.cliente = cliente;
+		this.empleado = empleado;
+	}
+	
+	
+
+	
+
+	
+
+	
 	
 
 }

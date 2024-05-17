@@ -79,5 +79,25 @@ public class ProyectoConEmpleado implements Serializable {
 	public void setProyecto(Proyecto proyecto) {
 		this.proyecto = proyecto;
 	}
+	public double costeHorasAsignadas(){
+		
+		return horasAsignadas * empleado.getPerfil().getTasaStandard().doubleValue();
+	}
+
+	@Override
+	public String toString() {
+		return "ProyectoConEmpleado [numeroOrden=" + numeroOrden + ", fechaIncorporacion=" + fechaIncorporacion
+				+ ", horasAsignadas=" + horasAsignadas + ", empleado=" + empleado + ", proyecto=" + proyecto + "]";
+	}
+
+	public ProyectoConEmpleado(int numeroOrden, Date fechaIncorporacion, int horasAsignadas, Empleado empleado,
+			Proyecto proyecto) {
+		super();
+		this.numeroOrden = numeroOrden;
+		this.fechaIncorporacion = fechaIncorporacion;
+		this.horasAsignadas = horasAsignadas;
+		this.empleado = empleado;
+		this.proyecto = proyecto;
+	}
 
 }
