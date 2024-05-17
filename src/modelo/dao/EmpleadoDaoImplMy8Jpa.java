@@ -1,9 +1,7 @@
 package modelo.dao;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import modelo.entidades.Cliente;
 import modelo.entidades.Empleado;
 
 public class EmpleadoDaoImplMy8Jpa extends AbstractDaoImplMy8Jpa implements EmpleadoDao {
@@ -93,10 +91,8 @@ public class EmpleadoDaoImplMy8Jpa extends AbstractDaoImplMy8Jpa implements Empl
 
 	@Override
 	public double salarioTotal() {
-		List<Empleado> todos =new ArrayList();
 		Double salarTotal= 0.0;
-		todos= buscarTodos();
-		for (Empleado empleado : todos) {
+		for (Empleado empleado : buscarTodos()) {
 			salarTotal=salarTotal + empleado.salarioBruto();
 			}
 		return salarTotal;
@@ -104,10 +100,8 @@ public class EmpleadoDaoImplMy8Jpa extends AbstractDaoImplMy8Jpa implements Empl
 
 	@Override
 	public double salarioTotal(int idDepar) {
-		List<Empleado> todos =new ArrayList();
 		Double salarTotal= 0.0;
-		todos= empleadosByDepartamento(idDepar);
-		for (Empleado empleado : todos) {
+		for (Empleado empleado : empleadosByDepartamento(idDepar)) {
 			salarTotal += empleado.salarioBruto();
 			}
 		return salarTotal;

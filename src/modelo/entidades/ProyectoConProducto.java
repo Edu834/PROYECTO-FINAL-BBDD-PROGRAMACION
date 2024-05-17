@@ -1,6 +1,8 @@
 package modelo.entidades;
 
 import java.io.Serializable;
+import java.util.Objects;
+
 import javax.persistence.*;
 
 
@@ -76,5 +78,32 @@ public class ProyectoConProducto implements Serializable {
 	public void setProyecto(Proyecto proyecto) {
 		this.proyecto = proyecto;
 	}
+	
+	public double precioTotalProducto() {
+		return cantidad*producto.getPrecio().doubleValue();
+	}
+
+	@Override
+	public String toString() {
+		return "ProyectoConProducto [numOrden=" + numOrden + ", cantidad=" + cantidad + ", precioAsignado="
+				+ precioAsignado + ", producto=" + producto + ", proyecto=" + proyecto + "]";
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(numOrden);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (!(obj instanceof ProyectoConProducto))
+			return false;
+		ProyectoConProducto other = (ProyectoConProducto) obj;
+		return numOrden == other.numOrden;
+	}
+	
+	
 
 }

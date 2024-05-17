@@ -4,6 +4,7 @@ import java.io.Serializable;
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.Objects;
 
 
 /**
@@ -56,6 +57,24 @@ public class Proyecto implements Serializable {
 	private Empleado empleado;
 
 	public Proyecto() {
+	}
+	
+
+	public Proyecto(String idProyecto, BigDecimal costeReal, BigDecimal costesPrevisto, String descripcion,
+			String estado, Date fechaFinPrevisto, Date fechaFinReal, Date fechaInicio, BigDecimal ventaPrevisto,
+			Cliente cliente, Empleado empleado) {
+		super();
+		this.idProyecto = idProyecto;
+		this.costeReal = costeReal;
+		this.costesPrevisto = costesPrevisto;
+		this.descripcion = descripcion;
+		this.estado = estado;
+		this.fechaFinPrevisto = fechaFinPrevisto;
+		this.fechaFinReal = fechaFinReal;
+		this.fechaInicio = fechaInicio;
+		this.ventaPrevisto = ventaPrevisto;
+		this.cliente = cliente;
+		this.empleado = empleado;
 	}
 
 	public String getIdProyecto() {
@@ -145,5 +164,55 @@ public class Proyecto implements Serializable {
 	public void setEmpleado(Empleado empleado) {
 		this.empleado = empleado;
 	}
+	
+	public double margenPrevisto() {
+		//Importe de venta – coste previsto
+		return ventaPrevisto.doubleValue() - costesPrevisto.doubleValue();
+	}
+	public double margenReal() {
+		//Importe de venta – gastos reales
+		return ventaPrevisto.doubleValue() - costeReal.doubleValue();
+	}
+	public double diferenciaGastos() {
+		//Gasto real – gasto previsto
+		double diferencia=costeReal.doubleValue() - costesPrevisto.doubleValue();
+		if (diferencia < 0) {
+			diferencia*=(-1);
+			return diferencia;
+		}else {
+			return diferencia;
+		}
+	}
+	public int diferenciaFinPrevistoReal() {
+		//Días entre fin previsto y fin real
+		return (int)((fechaFinPrevisto.getTime()/(1000*60*60*24)) - (fechaFinReal.getTime()/(1000*60*60*24)));
+		//Math.toIntExact(diferenciaMS)
+	}
+	
+
+	@Override
+	public String toString() {
+		return "Proyecto [idProyecto=" + idProyecto + ", costeReal=" + costeReal + ", costesPrevisto=" + costesPrevisto
+				+ ", descripcion=" + descripcion + ", estado=" + estado + ", fechaFinPrevisto=" + fechaFinPrevisto
+				+ ", fechaFinReal=" + fechaFinReal + ", fechaInicio=" + fechaInicio + ", ventaPrevisto=" + ventaPrevisto
+				+ ", cliente=" + cliente + ", empleado=" + empleado + "]";
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(idProyecto);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (!(obj instanceof Proyecto))
+			return false;
+		Proyecto other = (Proyecto) obj;
+		return Objects.equals(idProyecto, other.idProyecto);
+	}
+	
+	
 
 }

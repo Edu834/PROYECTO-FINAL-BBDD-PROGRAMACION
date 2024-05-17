@@ -4,6 +4,7 @@ import java.io.Serializable;
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.Objects;
 
 
 /**
@@ -86,5 +87,28 @@ public class Producto implements Serializable {
 	public void setFamilia(Familia familia) {
 		this.familia = familia;
 	}
+
+	@Override
+	public String toString() {
+		return "Producto [idProducto=" + idProducto + ", descripcion=" + descripcion + ", fechaCreacion="
+				+ fechaCreacion + ", precio=" + precio + ", stock=" + stock + ", familia=" + familia + "]";
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(idProducto);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (!(obj instanceof Producto))
+			return false;
+		Producto other = (Producto) obj;
+		return idProducto == other.idProducto;
+	}
+	
+	
 
 }
