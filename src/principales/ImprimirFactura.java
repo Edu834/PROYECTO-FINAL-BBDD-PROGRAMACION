@@ -1,5 +1,7 @@
 package principales;
 
+import java.util.List;
+
 import modelo.dao.ClienteDao;
 import modelo.dao.ClienteDaoImplMy8Jpa;
 import modelo.dao.EmpleadoDao;
@@ -47,7 +49,7 @@ public class ImprimirFactura {
 	public static void main(String[] args) {
 		Factura factura = new Factura("20240001", "Formación a cliente", null, pdao.buscarUno("FOR2020001"));
 		//alta(factura);
-		imprimirFactura(factura);
+		imprimirFactura(fdao.buscarUno("F2024001"));
 		
 	}
 	
@@ -63,7 +65,7 @@ public class ImprimirFactura {
 	public static void imprimirFactura(Factura factura) {
 		System.out.println("\nDATOS DE LA FACTURA\n");
 		System.out.println("Código factura: " + factura.getIdFactura() +
-				" Descripción: " + factura.getDescripcion() + " Fecha Factura: " + factura.getFechaFactura());
+				" // Descripción: " + factura.getDescripcion() + " // Fecha Factura: " + factura.getFechaFactura());
 		impCliente(factura);
 		impProyecto(factura);
 		impEmpleado(factura);
@@ -74,14 +76,14 @@ public class ImprimirFactura {
 	public static void impCliente(Factura factura) {
 		System.out.println("\nDatos del CLIENTE:\n");
 		System.out.println("Nombre: " + factura.getProyecto().getCliente().getNombre() +
-				" Dirección: " + factura.getProyecto().getCliente().getDomicilio());
+				" // Dirección: " + factura.getProyecto().getCliente().getDomicilio());
 	}
 	
 	public static void impProyecto(Factura factura) {
 		System.out.println("\nDatos del PROYECTO:\n");
 		System.out.println("Código proyecto: " + factura.getProyecto().getIdProyecto() + "\n" +
 				"Descripción de proyecto: " + factura.getProyecto().getDescripcion() + "\n" +
-				"Fecha Inicio: " + factura.getProyecto().getFechaInicio() + " Fecha Fin Real: " + factura.getProyecto().getFechaFinReal());
+				"Fecha Inicio: " + factura.getProyecto().getFechaInicio() + " // Fecha Fin Real: " + factura.getProyecto().getFechaFinReal());
 	}
 	
 	public static void impEmpleado(Factura factura) {
@@ -92,13 +94,13 @@ public class ImprimirFactura {
 		System.out.println("LISTA EMPLEADOS \n");
 		for (ProyectoConEmpleado empleadoProy : pedao.empleadosByProyecto(factura.getProyecto().getIdProyecto())) {
 			System.out.println("Nombre completo: " + empleadoProy.getEmpleado().nombreCompleto() + 
-					" Horas totales: " + empleadoProy.getHorasAsignadas() +
-					" Importe repercutido: " + empleadoProy.costeHorasAsignadas());
+					" // Horas totales: " + empleadoProy.getHorasAsignadas() +
+					" // Importe repercutido: " + empleadoProy.costeHorasAsignadas());
 			horasTotales += empleadoProy.getHorasAsignadas();
 			precioTotal += empleadoProy.costeHorasAsignadas(); 
 			cont++;
 		}
-		System.out.println("\nTotal horas: " + horasTotales + " Total precio: " + precioTotal);
+		System.out.println("\nTotal horas: " + horasTotales + " // Total precio: " + precioTotal);
 		
 	}
 	public static void impProducto(Factura factura) {
@@ -106,8 +108,8 @@ public class ImprimirFactura {
 		System.out.println("\nLISTA PRODUCTOS \n");
 		for (ProyectoConProducto productoProy : ppdao.productosByProyecto(factura.getProyecto().getIdProyecto())) {
 			System.out.println("Descripción: " + productoProy.getProducto().getDescripcion() +
-					" Cantidad: " + productoProy.getCantidad() +
-					" Precio unitario: " + productoProy.getProducto().getPrecio() + "Total: " + productoProy.precioTotalProducto());
+					" // Cantidad: " + productoProy.getCantidad() +
+					" // Precio unitario: " + productoProy.getProducto().getPrecio() + " // Total: " + productoProy.precioTotalProducto());
 			totalProductos += productoProy.precioTotalProducto();
 		}
 		System.out.println("\nTotal productos: " + totalProductos);
